@@ -96,7 +96,7 @@ def main():
     
     parser.add_argument('--epochs', type=int, default=500, metavar='N',
                         help='number of epochs to train (default: 500)')
-    parser.add_argument('--epoch_itrs', type=int, default=50)
+    parser.add_argument('--epoch_itrs', type=int, default=10)
     parser.add_argument('--lr_S', type=float, default=0.1, metavar='LR',
                         help='learning rate (default: 0.1)')
     parser.add_argument('--lr_G', type=float, default=1e-3,
