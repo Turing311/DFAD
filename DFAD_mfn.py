@@ -157,9 +157,6 @@ def main():
     student = student.to(device)
     generator = generator.to(device)
 
-    student.load_state_dict(torch.load('/kaggle/working/DFAD/network/mfn_mini.pth'))
-    generator.load_state_dict(torch.load('/kaggle/working/DFAD/network/mfn_generator.pth'))
-
     teacher.eval()
 
     optimizer_S = optim.SGD( student.parameters(), lr=args.lr_S, weight_decay=args.weight_decay, momentum=0.9 )
