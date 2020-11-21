@@ -4,8 +4,7 @@ import torch.utils.data as data
 import numpy as np
 import lmdb
 import random
-import caffe_pb2
-from caffe_pb2 import caffe_pb2
+from dataset import caffe_pb2
 
 from skimage.io import imread
 from skimage.transform import resize
