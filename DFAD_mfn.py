@@ -72,7 +72,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
             print('==== out', output.size())
             print('==== target', target.size())
             if i > 14:
-                print('==== out', output)
+                print('==== out', F.log_softmax(output, 1))
                 print('==== target', target)
             test_loss += F.cross_entropy(output, target, reduction='sum').item() # sum up batch loss
             pred = output.argmax(dim=1, keepdim=True) # get the index of the max log-probability
