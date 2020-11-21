@@ -79,7 +79,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
             pred = output.argmax(dim=1, keepdim=True) # get the index of the max log-probability
             correct += pred.eq(target.view_as(pred)).sum().item()
 
-    test_loss /= len(test_loader.dataset)
+    test_loss /= len(test_loader.dataset) - 3 * 96
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.4f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
@@ -97,7 +97,7 @@ def main():
     
     parser.add_argument('--epochs', type=int, default=500, metavar='N',
                         help='number of epochs to train (default: 500)')
-    parser.add_argument('--epoch_itrs', type=int, default=10)
+    parser.add_argument('--epoch_itrs', type=int, default=100)
     parser.add_argument('--lr_S', type=float, default=0.1, metavar='LR',
                         help='learning rate (default: 0.1)')
     parser.add_argument('--lr_G', type=float, default=1e-3,
