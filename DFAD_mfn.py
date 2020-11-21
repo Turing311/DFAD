@@ -86,7 +86,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
 def main():
     # Training settings
     parser = argparse.ArgumentParser(description='DFAD CIFAR')
-    parser.add_argument('--batch_size', type=int, default=2, metavar='N',
+    parser.add_argument('--batch_size', type=int, default=96, metavar='N',
                         help='input batch size for training (default: 256)')
     parser.add_argument('--test_batch_size', type=int, default=128, metavar='N',
                         help='input batch size for testing (default: 128)')
@@ -137,7 +137,7 @@ def main():
 #    _, test_loader = get_dataloader(args)
 
     test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/Valid-Low_lmdb", db_size=7939, crop_size=128, flip=False, scale=0.00390625, random=False),
-        batch_size=64, shuffle=False)
+        batch_size=1, shuffle=False)
 
     num_classes = 796
     
