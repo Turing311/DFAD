@@ -137,7 +137,7 @@ def main():
 #    _, test_loader = get_dataloader(args)
 
     test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/Valid-Low_lmdb", db_size=7939, crop_size=128, flip=False, scale=0.00390625, random=False),
-        batch_size=1, shuffle=False)
+        batch_size=512, shuffle=False)
 
     num_classes = 796
     
