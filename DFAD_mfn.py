@@ -62,7 +62,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
         for i, (data, target) in enumerate(test_loader):
             data, target = data.to(device), target.to(device)
 
-            if i == 16 or i == 21:
+            if i == 16 or i == 21 or i == 27:
                 continue
 
             z = torch.randn( (data.shape[0], args.nz, 1, 1), device=data.device, dtype=data.dtype )
