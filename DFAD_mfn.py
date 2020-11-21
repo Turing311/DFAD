@@ -71,7 +71,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
             
             print('==== out', output.size())
             print('==== target', target.size())
-            if i > 16:
+            if i > 14:
                 print('==== out', output)
                 print('==== target', target)
             test_loss += F.cross_entropy(output, target, reduction='sum').item() # sum up batch loss
