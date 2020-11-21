@@ -86,7 +86,7 @@ def test(args, student, generator, device, test_loader, epoch=0):
 def main():
     # Training settings
     parser = argparse.ArgumentParser(description='DFAD CIFAR')
-    parser.add_argument('--batch_size', type=int, default=96, metavar='N',
+    parser.add_argument('--batch_size', type=int, default=1, metavar='N',
                         help='input batch size for training (default: 256)')
     parser.add_argument('--test_batch_size', type=int, default=128, metavar='N',
                         help='input batch size for testing (default: 128)')
