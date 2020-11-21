@@ -68,9 +68,12 @@ def test(args, student, generator, device, test_loader, epoch=0):
 #            if i==0:
 #                vp.add_image( 'input', pack_images( denormalize(data,(0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)).clamp(0,1).detach().cpu().numpy() ) )
 #                vp.add_image( 'generated', pack_images( denormalize(fake,(0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)).clamp(0,1).detach().cpu().numpy() ) )
-
+            
             print('==== out', output.size())
             print('==== target', target.size())
+            if i > 16:
+                print('==== out', output)
+                print('==== target', target)
             test_loss += F.cross_entropy(output, target, reduction='sum').item() # sum up batch loss
             pred = output.argmax(dim=1, keepdim=True) # get the index of the max log-probability
             correct += pred.eq(target.view_as(pred)).sum().item()
