@@ -62,9 +62,6 @@ def test(args, student, generator, device, test_loader, epoch=0):
         for i, (data, target) in enumerate(test_loader):
             data, target = data.to(device), target.to(device)
 
-            if i == 16 or i == 21 or i == 27:
-                continue
-
             z = torch.randn( (data.shape[0], args.nz, 1, 1), device=data.device, dtype=data.dtype )
             fake = generator(z)
             output = student(data)
@@ -72,14 +69,11 @@ def test(args, student, generator, device, test_loader, epoch=0):
 #                vp.add_image( 'input', pack_images( denormalize(data,(0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)).clamp(0,1).detach().cpu().numpy() ) )
 #                vp.add_image( 'generated', pack_images( denormalize(fake,(0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)).clamp(0,1).detach().cpu().numpy() ) )
 
-            try:
-                test_loss += F.cross_entropy(output, target, reduction='sum').item() # sum up batch loss
-            except:
-                print('=====Exception====', i)
+            test_loss += F.cross_entropy(output, target, reduction='sum').item() # sum up batch loss
             pred = output.argmax(dim=1, keepdim=True) # get the index of the max log-probability
             correct += pred.eq(target.view_as(pred)).sum().item()
 
-    test_loss /= len(test_loader.dataset) - 3 * 96
+    test_loss /= len(test_loader.dataset)
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.4f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
@@ -140,13 +134,11 @@ def main():
 
 #    _, test_loader = get_dataloader(args)
 
-    test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/Valid-Low_lmdb", db_size=7939, crop_size=128, flip=False, scale=0.00390625, random=False),
-        batch_size=256, shuffle=False)
-
-    num_classes = 796
+    test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/Valid_DHLPC_lmdb",, db_size=6831, crop_size=128, flip=False, scale=0.00390625, random=False),
+		batch_size=64, shuffle=False)
     
-    teacher = network.mfn.MfnModel(n_class=num_classes)
-    student = network.mfn_mini.MfnModelMini(n_class=num_classes)
+    teacher = network.mfn.MfnModel()
+    student = network.mfn_mini.MfnModelMini()
 
     generator = network.gan.GeneratorA(nz=args.nz, nc=3, img_size=128)
 
