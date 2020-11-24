@@ -109,7 +109,7 @@ def main():
                         help='disables CUDA training')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')
-    parser.add_argument('--ckpt', type=str, default='network/mfn_org.pth')
+    parser.add_argument('--ckpt', type=str, default='network/mfn_2510.pth')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                         help='how many batches to wait before logging training status')
     parser.add_argument('--nz', type=int, default=256)
