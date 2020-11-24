@@ -134,7 +134,7 @@ def main():
 
 #    _, test_loader = get_dataloader(args)
 
-    test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/Valid_DHLPC_lmdb",, db_size=6831, crop_size=128, flip=False, scale=0.00390625, random=False),
+    test_loader = torch.utils.data.DataLoader(DataLmdb("/kaggle/working/DFAD/Valid_DHLPC_lmdb", db_size=6831, crop_size=128, flip=False, scale=0.00390625, random=False),
 		batch_size=64, shuffle=False)
     
     teacher = network.mfn.MfnModel()
