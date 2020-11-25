@@ -145,8 +145,8 @@ def main():
     teacher.load_state_dict( torch.load( args.ckpt ) )
     print("Teacher restored from %s"%(args.ckpt))
 
-    student.load_state_dict( torch.load('mfn_mini.pth') )
-    generator.load_state_dict( torch.load('mfn_generator.pth') )
+#    student.load_state_dict( torch.load('mfn_mini.pth') )
+#    generator.load_state_dict( torch.load('mfn_generator.pth') )
 
     teacher = teacher.to(device)
     student = student.to(device)
