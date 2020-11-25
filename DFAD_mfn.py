@@ -92,7 +92,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=500, metavar='N',
                         help='number of epochs to train (default: 500)')
     parser.add_argument('--epoch_itrs', type=int, default=100)
-    parser.add_argument('--lr_S', type=float, default=0.1, metavar='LR',
+    parser.add_argument('--lr_S', type=float, default=0.03, metavar='LR',
                         help='learning rate (default: 0.1)')
     parser.add_argument('--lr_G', type=float, default=1e-3,
                         help='learning rate (default: 0.1)')
@@ -116,7 +116,7 @@ def main():
     parser.add_argument('--test-only', action='store_true', default=False)
     parser.add_argument('--download', action='store_true', default=False)
     parser.add_argument('--step_size', type=int, default=100, metavar='S')
-    parser.add_argument('--scheduler', action='store_true', default=False)
+    parser.add_argument('--scheduler', action='store_true', default=True)
     
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
@@ -144,6 +144,9 @@ def main():
 
     teacher.load_state_dict( torch.load( args.ckpt ) )
     print("Teacher restored from %s"%(args.ckpt))
+
+    student.load_state_dict( torch.load('mfn_mini.pth') )
+    generator.load_state_dict( torch.load('mfn_generator.pth') )
 
     teacher = teacher.to(device)
     student = student.to(device)
